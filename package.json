@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "test": "jest --no-cache ./*",
+    "watch": "jest --watch --bail=20",
+    "start": "node -r esm tasks/index.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.5.0",
+    "eslint": "^5.15.3",
+    "eslint-plugin-import": "^2.16.0",
+    "jest": "^24.5.0",
+    "prettier": "^1.19.1"
+  },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "package.json"
+    ]
+  },
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}

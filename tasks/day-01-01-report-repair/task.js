@@ -1,4 +1,4 @@
-export function find2020(entries) {
+export function find2020WithTwo(entries) {
   let firstEntry = null;
   let secondEntry = null;
 
@@ -11,4 +11,23 @@ export function find2020(entries) {
     });
   });
   return firstEntry * secondEntry;
+}
+
+export function find2020WithThree(entries) {
+  let firstEntry = null;
+  let secondEntry = null;
+  let thirdEntry = null;
+
+  entries.forEach((entry) => {
+    entries.forEach((firstEntryToSum) => {
+      entries.forEach((secondEntryToSum) => {
+        if (entry + firstEntryToSum + secondEntryToSum == 2020) {
+          firstEntry = entry;
+          secondEntry = firstEntryToSum;
+          thirdEntry = secondEntryToSum;
+        }
+      });
+    });
+  });
+  return firstEntry * secondEntry * thirdEntry;
 }

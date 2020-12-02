@@ -1,7 +1,4 @@
-import {
-  find2020WithTwo,
-  find2020WithThree,
-} from './day-01-01-report-repair/task.js';
-import { input } from './day-01-01-report-repair/puzzleinput.js';
+import { countValidPasswords } from './day-02/task.js';
+import { input } from './day-02/puzzleinput.js';
 
-console.log(find2020WithThree(input));
+console.log(countValidPasswords(input));

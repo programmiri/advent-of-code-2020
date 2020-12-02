@@ -1,6 +1,6 @@
 import { find2020WithTwo, find2020WithThree } from './task.js';
 
-describe('Day one, Report Repair', () => {
+describe('Day one', () => {
   it('returns the two multiplied entries that sum to 2020', () => {
     const entries = [1721, 979, 366, 299, 675, 1456];
 

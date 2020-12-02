@@ -5,27 +5,46 @@ export function parseInput(input) {
     .map((listItem) => {
       const parsedList = listItem.split(/(?:\s|-|:)+/);
       return {
-        lowest: parseInt(parsedList[0]),
-        highest: parseInt(parsedList[1]),
+        firstNum: parseInt(parsedList[0]),
+        secondNum: parseInt(parsedList[1]),
         letter: parsedList[2],
         password: parsedList[3],
       };
     });
 }
 
-export function isPasswordValid(passwordData) {
+export function isPasswordValidOldPolicy(passwordData) {
   const regex = new RegExp(passwordData.letter, 'g');
   const matchedLetter = (passwordData.password.match(regex) || []).length;
 
   return (
-    matchedLetter >= passwordData.lowest &&
-    matchedLetter <= passwordData.highest
+    matchedLetter >= passwordData.firstNum &&
+    matchedLetter <= passwordData.secondNum
   );
 }
 
-export function countValidPasswords(input) {
+export function isPasswordValidNewPolicy(passwordData) {
+  return (
+    (passwordData.password[passwordData.firstNum - 1] === passwordData.letter &&
+      passwordData.password[passwordData.secondNum - 1] !==
+        passwordData.letter) ||
+    (passwordData.password[passwordData.firstNum - 1] !== passwordData.letter &&
+      passwordData.password[passwordData.secondNum - 1] === passwordData.letter)
+  );
+}
+
+export function countValidPasswords(validator, input) {
   const parsedInput = parseInput(input);
 
-  return parsedInput.filter((passwordData) => isPasswordValid(passwordData))
-    .length;
+  return parsedInput.filter((passwordData) => validator(passwordData)).length;
 }
+
+export const countValidPasswordsOldPolicy = countValidPasswords.bind(
+  null,
+  isPasswordValidOldPolicy
+);
+
+export const countValidPasswordsNewPolicy = countValidPasswords.bind(
+  null,
+  isPasswordValidNewPolicy
+);

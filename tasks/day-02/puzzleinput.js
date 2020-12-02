@@ -1,4 +1,4 @@
-export const input = `
+export const inputNew = `
 16-18 h: hhhhhhhhhhhhhhhhhh
 17-18 d: ddddddddddddddddzn
 15-18 c: cccccccccccccczcczc
@@ -998,4 +998,5 @@ export const input = `
 7-11 z: zzzzzzzzzzzz
 4-6 s: xwssttdqtc
 7-9 t: ttzmqqdtqtt
-6-19 g: gggggggggggggggggggg`;
+6-19 g: gggggggggggggggggggg
+`;

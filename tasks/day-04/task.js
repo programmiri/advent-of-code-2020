@@ -1,4 +1,4 @@
-const requiredFields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid', 'cid'];
+const requiredFields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'];
 
 export function generatePasswordMap(input) {
   return input
@@ -15,11 +15,17 @@ export function generatePasswordMap(input) {
 }
 
 export function isPasswordValid(password) {
-  return password.every((entry) => {
-    return requiredFields.some((field) => field === Object.keys(entry)[0]);
-  });
+  const passwordsKeys = password.map((entry) => Object.keys(entry)[0]);
+  return requiredFields.every((key) => passwordsKeys.includes(key));
 }
 
-export function countValidPasswords() {
-  return null;
+export function countValidPasswords(input) {
+  const passwordMap = generatePasswordMap(input);
+
+  return passwordMap.reduce((acc, curr) => {
+    if (isPasswordValid(curr)) {
+      acc++;
+    }
+    return acc;
+  }, 0);
 }

@@ -1,4 +1,4 @@
-import { countTreesAllSlopes } from './day-03/task.js';
-import { input } from './day-03/puzzleinput.js';
+import { countValidPasswords } from './day-04/task.js';
+import { input } from './day-04/puzzleinput.js';
 
-console.log(countTreesAllSlopes(input));
+console.log(countValidPasswords(input));

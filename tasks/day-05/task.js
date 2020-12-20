@@ -42,7 +42,7 @@ export function getSeatId(row, column) {
 
 export function findHighestSeatId(input) {
   const boardingPasses = parseInput(input);
-  const test = boardingPasses.reduce((acc, boardingPass) => {
+  return boardingPasses.reduce((acc, boardingPass) => {
     const row = findRow(boardingPass);
     const column = findColumn(boardingPass);
     const seatId = getSeatId(row, column);
@@ -52,5 +52,33 @@ export function findHighestSeatId(input) {
     }
     return acc;
   }, 0);
-  return test;
+}
+
+export function getAllSeatIds(input) {
+  const boardingPasses = parseInput(input);
+  return boardingPasses
+    .map((boardingPass) => {
+      const row = findRow(boardingPass);
+      const column = findColumn(boardingPass);
+      return getSeatId(row, column);
+    })
+    .sort();
+}
+
+export function findMissingSeatId(seatIds) {
+  let id = 0;
+  let idToCheck = seatIds[0];
+  seatIds.some((seatId, index) => {
+    if (seatId !== idToCheck && seatIds[index - 1] && seatIds[index + 1]) {
+      id = idToCheck;
+      return true;
+    }
+    idToCheck += 1;
+  });
+  return id;
+}
+
+export function findMissingSeatIdInList(input) {
+  const allIds = getAllSeatIds(input);
+  return findMissingSeatId(allIds);
 }
